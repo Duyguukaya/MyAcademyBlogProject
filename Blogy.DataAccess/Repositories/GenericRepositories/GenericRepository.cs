@@ -46,7 +46,8 @@ namespace Blogy.DataAccess.Repositories.GenericRepositories
 
         public async Task UpdateAsync(TEntity entity)
         {
-           _context.Update(entity);
+            _context.Update(entity);
+            _context.Entry(entity).Property(x => x.CreatedDate).IsModified = false;
             await _context.SaveChangesAsync();
         }
     }
