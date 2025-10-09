@@ -7,8 +7,8 @@ namespace Blogy.DataAccess.Repositories.GenericRepositories
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
-        private readonly AppDbContext _context;
-        private readonly DbSet<TEntity> _table;
+        protected readonly AppDbContext _context;
+        protected readonly DbSet<TEntity> _table;
 
         public GenericRepository(AppDbContext context)
         {
