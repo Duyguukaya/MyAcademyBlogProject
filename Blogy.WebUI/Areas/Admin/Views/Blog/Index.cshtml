@@ -1,37 +1,37 @@
 ﻿@model List<ResultBlogDto>
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
 }
 
 @{
-    int count = 0;
+	int count = 0;
 }
 
 <h3>Bloglar</h3>
 
 <table class="table table-bordered table-hover">
-    <tr>
-        <th>#</th>
-        <th>Blog Başlığı</th>
-        <th>Açıklaması</th>
-        <th>Kategori</th>
-        <th>İşlemler</th>
-    </tr>
+	<tr>
+		<th>#</th>
+		<th>Blog Başlığı</th>
+		<th>Açıklaması</th>
+		<th>Kategori</th>
+		<th>İşlemler</th>
+	</tr>
 
-    @foreach (var item in Model)
-    {
-        count++;
-        <tr>
-            <td>@count</td>
-            <td><img src="@item.CoverImage" style="height:75px;width:75px" /> @item.Tittle</td>
-            <td>@item.Description</td>
-            <td>@item.Category.CategoryName</td>
-            <td>
-                <a href="/Admin/Blog/DeleteBlog/@item.Id" onclick="return confirm('Bu öğeyi kalıcı olarak silmeye emin misin?')" class="btn btn-danger">Sil</a>
-                <a href="/Admin/Blog/UpdateBlog/@item.Id" class="btn btn-info">Güncelle</a>
-            </td>
-        </tr>
-    }
+	@foreach (var item in Model)
+	{
+		count++;
+		<tr>
+			<td>@count</td>
+			<td><img src="@item.CoverImage" style="height:75px;width:75px" /> @item.Tittle</td>
+			<td>@item.Description</td>
+			<td>@item.Category.CategoryName</td>
+			<td>
+				<a href="/Admin/Blog/DeleteBlog/@item.Id" onclick="return confirm('Bu öğeyi kalıcı olarak silmeye emin misin?')" class="btn btn-danger">Sil</a>
+				<a href="/Admin/Blog/UpdateBlog/@item.Id" class="btn btn-info">Güncelle</a>
+			</td>
+		</tr>
+	}
 </table>
 
 <a href="/Admin/Blog/CreateBlog" class="btn btn-primary">Yeni Blog Oluştur</a>
