@@ -27,7 +27,7 @@
             <td>@item.Description</td>
             <td>@item.Category.CategoryName</td>
             <td>
-                <a href="/Admin/Blog/DeleteBlog/@item.Id" class="btn btn-danger">Sil</a>
+                <a href="/Admin/Blog/DeleteBlog/@item.Id" onclick="return confirm('Bu öğeyi kalıcı olarak silmeye emin misin?')" class="btn btn-danger">Sil</a>
                 <a href="/Admin/Blog/UpdateBlog/@item.Id" class="btn btn-info">Güncelle</a>
             </td>
         </tr>
