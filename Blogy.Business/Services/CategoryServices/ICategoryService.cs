@@ -9,5 +9,6 @@ namespace Blogy.Business.Services.CategoryServices
         Task CreateAsync(CreateCategoryDto createCategoryDto);
         Task UpdateAsync(UpdateCategoryDto updateCategoryDto);
         Task DeleteAsync(int id);
+        Task<List<ResultCategoryDto>> GetCategoriesWithBlogsAsync();
     }
 }
