@@ -24,6 +24,12 @@ namespace Blogy.Business.Services.BlogServices
             return _mapper.Map<List<ResultBlogDto>>(values);
         }
 
+        public async Task<List<ResultBlogDto>> GetBlogsByCategoryIdAsync(int categoryId)
+        {
+            var values = await _blogRepository.GetAllAsync(x=>x.CategoryId==categoryId);
+            return _mapper.Map<List<ResultBlogDto>>(values);
+        }
+
         public async Task<List<ResultBlogDto>> GetBlogWithCategoriesAsync()
         {
             var values = await _blogRepository.GetBlogsWithCategoriesAsync();
