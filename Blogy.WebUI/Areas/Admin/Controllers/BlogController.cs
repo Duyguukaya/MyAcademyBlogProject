@@ -1,12 +1,14 @@
 ﻿using Blogy.Business.DTOs.BlogDtos;
 using Blogy.Business.Services.BlogServices;
 using Blogy.Business.Services.CategoryServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Blogy.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class BlogController(IBlogService _blogService, ICategoryService _categoryService) : Controller
     {
         private async Task GetCategoriesAsync()
