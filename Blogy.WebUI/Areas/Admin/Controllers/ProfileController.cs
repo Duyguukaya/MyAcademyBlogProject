@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using System.IO; // Path ve FileStream için bu using'i eklemeyi unutmayın
-using System; // Guid için bu using'i eklemeyi unutmayın
+using System.IO; 
+using System; 
 
 namespace Blogy.WebUI.Areas.Admin.Controllers
 {
-    // Controller seviyesine taşındı, böylece hem GET hem POST için geçerli oldu.
+  
     [Area(Roles.Admin)]
     [Authorize(Roles = Roles.Admin)]
     public class ProfileController(UserManager<AppUser> _userManager, IMapper _mapper) : Controller
@@ -25,13 +25,13 @@ namespace Blogy.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        // [Area] ve [Authorize] nitelemelerini buraya (veya class seviyesine) ekledim.
+      
         public async Task<IActionResult> Index(EditProfileDto model)
         {
-            // ModelState.IsValid kontrolü eklemek iyi bir pratiktir.
+          
             if (!ModelState.IsValid)
             {
-                // Hata varsa, modelle birlikte View'ı tekrar göster.
+         
                 return View(model);
             }
 
@@ -70,7 +70,7 @@ namespace Blogy.WebUI.Areas.Admin.Controllers
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
             {
-                // Identity'den gelen hataları ModelState'e ekleyebilirsiniz.
+             
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
@@ -78,7 +78,6 @@ namespace Blogy.WebUI.Areas.Admin.Controllers
                 return View(model);
             }
 
-            // Başarılı güncelleme sonrası yönlendirme
             return RedirectToAction("Index", "Blog", new { area = Roles.Admin });
         }
     }
