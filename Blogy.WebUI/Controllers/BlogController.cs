@@ -1,13 +1,15 @@
 ﻿using Blogy.Business.Services.BlogServices;
 using Blogy.Business.Services.CategoryServices;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Blogy.WebUI.Controllers
 {
     public class BlogController(IBlogService _blogService, ICategoryService _categoryService) : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var blogs = _blogService.GetAllAsync();
             return View();
         }
 

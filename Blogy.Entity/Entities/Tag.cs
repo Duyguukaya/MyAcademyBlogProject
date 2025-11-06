@@ -5,6 +5,6 @@ namespace Blogy.Entity.Entities
     public class Tag:BaseEntity
     {
         public string Name { get; set; }
-        public IList<BlogTag> BlogTags { get; set; }
+        public virtual IList<BlogTag> BlogTags { get; set; }
     }
 }

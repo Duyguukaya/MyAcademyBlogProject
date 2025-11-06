@@ -6,8 +6,8 @@ namespace Blogy.Entity.Entities
     {
         public string Content { get; set; }
         public int BlogId { get; set; }
-        public Blog Blog { get; set; }
+        public virtual Blog Blog { get; set; }
         public int UserId { get; set; }
-        public AppUser User { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }
