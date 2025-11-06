@@ -16,6 +16,7 @@ namespace Blogy.Business.Mappings
             CreateMap<Blog,ResultBlogDto>().ReverseMap();
             CreateMap<Blog,CreateBlogDto>().ReverseMap();
             CreateMap<Blog,UpdateBlogDto>().ReverseMap();
+            CreateMap<UpdateBlogDto, ResultBlogDto>().ReverseMap();
         }
     }
 }

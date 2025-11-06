@@ -4,6 +4,7 @@
     {
         Task<List<TResult>> GetAllAsync();
         Task<TUpdate> GetByIdAsync(int id);
+        Task<TResult> GetSingleByIdAsync(int id);
         Task CreateAsync(TCreate createDto);
         Task UpdateAsync(TUpdate updateDto);
         Task DeleteAsync(int id);

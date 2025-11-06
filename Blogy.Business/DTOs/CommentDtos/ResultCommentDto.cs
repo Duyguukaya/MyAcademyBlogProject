@@ -9,6 +9,7 @@ namespace Blogy.Business.DTOs.CommentDtos
     {
         public string Content { get; set; }
         public int BlogId { get; set; }
+        public DateTime CreatedDate { get; set; }
         public ResultBlogDto Blog { get; set; }
         public int UserId { get; set; }
         public ResultUserDto User { get; set; }

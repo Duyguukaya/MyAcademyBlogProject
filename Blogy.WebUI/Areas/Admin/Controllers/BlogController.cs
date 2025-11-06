@@ -77,6 +77,8 @@ namespace Blogy.WebUI.Areas.Admin.Controllers
                 await GetCategoriesAsync();
                 return View(updateBlogDto);
             }
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            updateBlogDto.WriterId = user.Id;
             await _blogService.UpdateAsync(updateBlogDto);
             return RedirectToAction(nameof(Index));
         }
