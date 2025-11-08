@@ -1,0 +1,36 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList<ResultBlogDto>
+@*
+   _BlogListComponent
+*@
+@{
+      var customOptions = PagedListRenderOptions.Bootstrap4PageNumbersPlusPrevAndNext;
+
+    customOptions.LinkToPreviousPageFormat = "Önceki";
+    customOptions.LinkToNextPageFormat = "Sonraki";
+}
+
+<div class="col-lg-8">
+    @foreach (var item in Model)
+    {
+        <div class="blog-entry d-flex blog-entry-search-item">
+            <a href="#" class="img-link me-4">
+                <img src="@item.CoverImage" alt="Image" class="img-fluid">
+            </a>
+            <div>
+                <span class="date">@item.CreatedDate &bullet; <a href="#">@item.Category.CategoryName</a></span>
+                <h2><a href="single.html">@item.Tittle</a></h2>
+                <p>@(item.Description.Length > 100 ? item.Description.Substring(0, 100) + "..." : item.Description) </p>
+                <p><a href="/Blog/BlogDetails/@item.Id" class="btn btn-sm btn-outline-primary">Devamını Oku</a></p>
+            </div>
+        </div>
+
+    }
+
+    <div class="row text-start pt-5 border-top">
+        <div class="col-md-12">
+            <pager asp-action="Index" asp-controller="Blog" list="@Model" options="customOptions"></pager>
+        </div>
+    </div>
+
+</div>
