@@ -1,0 +1,51 @@
+﻿@model List<Blogy.Business.DTOs.BlogDtos.ResultBlogDto>
+@*
+    _Last6BlogsComponent
+*@
+
+<section class="section bg-light">
+    <div class="container">
+        <div class="row align-items-stretch retro-layout">
+
+            <div class="col-md-4">
+                @foreach (var item in Model.Take(2))
+                {
+                    <a href="single.html" class="h-entry mb-30 v-height gradient">
+                        <div class="featured-img" style="@item.CoverImage"></div>
+                        <div class="text">
+                            <span class="date">@item.CreatedDate.ToShortDateString()</span>
+                            <h2>@(item.Description.Length < 100 ? item.Description : item.Description.Substring(0, 100) + "...")</h2>
+                        </div>
+                    </a>
+                }
+            </div>
+
+            <div class="col-md-4">
+                @foreach (var item in Model.Skip(2).Take(2))
+                {
+                    <a href="single.html" class="h-entry mb-30 v-height gradient">
+                        <div class="featured-img" style="@item.CoverImage"></div>
+                        <div class="text">
+                            <span class="date">@item.CreatedDate.ToShortDateString()</span>
+                            <h2>@(item.Description.Length < 100 ? item.Description : item.Description.Substring(0, 100) + "...")</h2>
+                        </div>
+                    </a>
+                }
+            </div>
+
+            <div class="col-md-4">
+                @foreach (var item in Model.Skip(4).Take(2))
+                {
+                    <a href="single.html" class="h-entry mb-30 v-height gradient">
+                        <div class="featured-img" style="@item.CoverImage"></div>
+                        <div class="text">
+                            <span class="date">@item.CreatedDate.ToShortDateString()</span>
+                            <h2>@(item.Description.Length < 100 ? item.Description : item.Description.Substring(0, 100) + "...")</h2>
+                        </div>
+                    </a>
+                }
+            </div>
+
+        </div>
+    </div>
+</section>

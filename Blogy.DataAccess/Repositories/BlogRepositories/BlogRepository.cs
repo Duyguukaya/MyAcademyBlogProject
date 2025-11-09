@@ -19,5 +19,10 @@ namespace Blogy.DataAccess.Repositories.BlogRepositories
         {
            return await _table.OrderByDescending(x => x.Id).Take(3).ToListAsync();
         }
+
+        public async Task<List<Blog>> GetLast6BlogsAsync()
+        {
+            return await _table.OrderByDescending(x => x.Id).Take(6).ToListAsync();
+        }
     }
 }

@@ -1,25 +1,27 @@
 ﻿@model List<ResultCategoryDto>
 
 <style>
-	.post-entry-alt .img-link img {
-		width: 100%; /* Kartın tüm genişliğini kaplar */
-		height: 250px; /* Sabit yükseklik */
-		object-fit: cover; /* Resim taşan kısımları kırpar, kartı doldurur */
-		display: block;
-	}
-
-
 	.post-entry-alt {
 		border: 1px solid #ddd;
 		padding: 15px;
 		border-radius: 5px;
 		transition: transform 0.3s;
+		/* Yeni kod */
+		height: 500px; /* Deneme için, uygun değeri bulun */
+		display: flex; /* İçerikleri hizalamak için flex kullanıyoruz */
+		flex-direction: column; /* İçerikleri dikey sırala */
 	}
 
-		.post-entry-alt:hover {
-			transform: translateY(-5px);
-			box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+		.post-entry-alt .excerpt {
+			flex-grow: 1; /* Excerpt div'inin kalan boşluğu doldurmasını sağlar */
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between; /* İçeriği dikeyde yayar */
 		}
+
+			.post-entry-alt .excerpt p:last-of-type { /* Son "Devamını Oku" paragrafı */
+				margin-top: auto; /* En alta hizala */
+			}
 </style>
 
 @foreach (var category in Model)
@@ -35,32 +37,36 @@
 			</div>
 
 			<div class="row">
-				@foreach (var blog in category.Blogs)
+				@if (category.Blogs != null)
 				{
-					<div class="col-lg-4 mb-4">
-						<div class="post-entry-alt">
-							<a href="single.html" class="img-link">
-								<img src="@blog.CoverImage" alt="Image" class="img-fluid">
-							</a>
-							<div class="excerpt">
+					@foreach (var blog in category.Blogs.OrderByDescending(b => b.CreatedDate).Take(3))
+					{
+						<div class="col-lg-4 mb-4">
+							<div class="post-entry-alt">
+								<a href="single.html" class="img-link">
+									<img src="@blog.CoverImage" alt="Image" class="img-fluid">
+								</a>
+								<div class="excerpt">
 
-								<h2><a href="single.html">@blog.Tittle</a></h2>
-								<div class="post-meta align-items-center text-left clearfix">
-									<figure class="author-figure mb-0 me-3 float-start">
-										<img src="~/blogy-1.0.0/images/person_1.jpg" alt="Image" class="img-fluid">
-									</figure>
-									<span class="d-inline-block mt-1">By <a href="#">David Anderson</a></span>
-									<span>&nbsp;-&nbsp; @blog.CreatedDate.ToShortDateString()</span>
+									<h2><a href="single.html">@blog.Tittle</a></h2>
+									<div class="post-meta align-items-center text-left clearfix">
+										<figure class="author-figure mb-0 me-3 float-start">
+											<img src="~/blogy-1.0.0/images/person_1.jpg" alt="Image" class="img-fluid">
+										</figure>
+										<span class="d-inline-block mt-1">By <a href="#">David Anderson</a></span>
+										<span>&nbsp;-&nbsp; @blog.CreatedDate.ToShortDateString()</span>
+									</div>
+
+									<p>@(blog.Description.Length < 100 ? blog.Description : blog.Description.Substring(0, 100) + "...")</p>
+									<p><a href="#" class="read-more">Devamını Oku</a></p>
 								</div>
-
-								<p>@(blog.Description.Length < 100 ? blog.Description : blog.Description.Substring(0, 100) + "...")</p>
-								<p><a href="#" class="read-more">Devamını Oku</a></p>
 							</div>
 						</div>
-					</div>
+					}
 				}
 			</div>
 
 		</div>
 	</section>
+
 }
