@@ -26,4 +26,8 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\azzara-master\assets\img\flags\.DS_Store" />
+  </ItemGroup>
+
 </Project>
