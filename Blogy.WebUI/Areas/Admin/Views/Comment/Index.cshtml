@@ -13,7 +13,7 @@
 <table class="table table-bordered table-hover">
     <tr>
         <th>#</th>
-        <th>Blog Id</th>
+        <th>Blog Adı</th>
         <th>Yorum İçeriği</th>
         <th>İşlemler</th>
     </tr>
@@ -23,7 +23,7 @@
         count++;
         <tr>
             <th>@count</th>
-            <td>@item.BlogId</td>
+            <td>@item.Blog.Tittle</td>
             <td>@item.Content</td>
             <td>
                 <a href="/Admin/Comment/DeleteComment/@item.Id" class="btn btn-danger">Sil</a>
