@@ -10,8 +10,8 @@
             <div class="col-md-4">
                 @foreach (var item in Model.Take(2))
                 {
-                    <a href="single.html" class="h-entry mb-30 v-height gradient">
-                        <div class="featured-img" style="@item.CoverImage"></div>
+                    <a href="/Blog/BlogDetails/@item.Id" class="h-entry mb-30 v-height gradient">
+                        <div class="featured-img" style="background-image: url('@item.CoverImage');"></div>
                         <div class="text">
                             <span class="date">@item.CreatedDate.ToShortDateString()</span>
                             <h2>@(item.Description.Length < 100 ? item.Description : item.Description.Substring(0, 100) + "...")</h2>
@@ -19,25 +19,28 @@
                     </a>
                 }
             </div>
-
             <div class="col-md-4">
-                @foreach (var item in Model.Skip(2).Take(2))
+                @{
+                    var middleItem = Model.Skip(2).FirstOrDefault();
+                }
+
+                @if (middleItem != null)
                 {
-                    <a href="single.html" class="h-entry mb-30 v-height gradient">
-                        <div class="featured-img" style="@item.CoverImage"></div>
+                    <a href="/Blog/BlogDetails/@middleItem.Id" class="h-entry v-height gradient" style="height: 95%;">
+                        <div class="featured-img" style="background-image: url('@middleItem.CoverImage');"></div>
                         <div class="text">
-                            <span class="date">@item.CreatedDate.ToShortDateString()</span>
-                            <h2>@(item.Description.Length < 100 ? item.Description : item.Description.Substring(0, 100) + "...")</h2>
+                            <span class="date">@middleItem.CreatedDate.ToShortDateString()</span>
+                            <h2>@(middleItem.Description.Length < 100 ? middleItem.Description : middleItem.Description.Substring(0, 100) + "...")</h2>
                         </div>
                     </a>
                 }
             </div>
 
             <div class="col-md-4">
-                @foreach (var item in Model.Skip(4).Take(2))
+                @foreach (var item in Model.Skip(3).Take(2))
                 {
-                    <a href="single.html" class="h-entry mb-30 v-height gradient">
-                        <div class="featured-img" style="@item.CoverImage"></div>
+                    <a href="/Blog/BlogDetails/@item.Id" class="h-entry mb-30 v-height gradient">
+                        <div class="featured-img" style="background-image: url('@item.CoverImage');"></div>
                         <div class="text">
                             <span class="date">@item.CreatedDate.ToShortDateString()</span>
                             <h2>@(item.Description.Length < 100 ? item.Description : item.Description.Substring(0, 100) + "...")</h2>

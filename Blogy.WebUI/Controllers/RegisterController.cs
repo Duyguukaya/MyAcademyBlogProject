@@ -26,6 +26,7 @@ namespace Blogy.WebUI.Controllers
                 LastName = model.LastName,
                 Email = model.Email,
                 UserName = model.UserName
+                
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -38,7 +39,7 @@ namespace Blogy.WebUI.Controllers
                 }
                 return View(model);
             }
-            
+            await _userManager.AddToRoleAsync(user, "User");
             return RedirectToAction("Index", "Login");
         }
      

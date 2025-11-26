@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Blogy.WebUI.Controllers
 {
-    public class LoginController(SignInManager<AppUser> _signInManager) : Controller
+    public class LoginController(SignInManager<AppUser> _signInManager,UserManager<AppUser> _userManager) : Controller
     {
         public IActionResult Index()
         {
@@ -17,13 +17,32 @@ namespace Blogy.WebUI.Controllers
         {
             var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
 
+
             if (!result.Succeeded)
             {
                 ModelState.AddModelError(string.Empty, "Kullanıcı adı veya şifre hatalı!");
                 return View(model);
             }
+            var user = await _userManager.FindByNameAsync(model.UserName);
 
-            return RedirectToAction("Index","Blog",new {area= "Admin"});
+            var roles = await _userManager.GetRolesAsync(user);
+
+            if (roles.Contains("Admin"))
+            {
+                return RedirectToAction("Index", "Blog", new { area = "Admin" });
+            }
+            else if (roles.Contains("Writer"))
+            {
+                return RedirectToAction("Index", "Dashboard", new { area = "Writer" }); 
+            }
+            else if (roles.Contains("User"))
+            {
+                return RedirectToAction("Index", "Default"); 
+            }
+
+            return RedirectToAction("Index", "Home");
+
+          
         }
     }
 }
