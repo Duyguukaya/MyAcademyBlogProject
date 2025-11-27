@@ -1,0 +1,218 @@
+﻿@using Blogy.Entity.Entities
+@model IList<AppUser>
+
+@{
+    ViewData["Title"] = "Hakkımızda";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+            <span class="icofont-close js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
+
+<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('/blogy-1.0.0/images/hero_5.jpg');">
+    <div class="container">
+        <div class="row same-height justify-content-center">
+            <div class="col-md-6">
+                <div class="post-entry text-center">
+                    <h1 class="mb-4">Hakkımızda</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section sec-halfs py-0">
+    <div class="container">
+        <div class="half-content d-lg-flex align-items-stretch">
+            <div class="img" style="background-image: url('/blogy-1.0.0/images/hero_1.jpg')" data-aos="fade-in" data-aos-delay="100">
+            </div>
+            <div class="text">
+                <h2 class="heading text-primary mb-3">Yaratıcılar ve Üreticiler İçin Kaynaklar</h2>
+                <p class="mb-4">Kelimelerin dünyasında, yaratıcılığın sınırlarını zorlayan bir topluluğuz. Blogy, sadece bir yazı platformu değil, fikirlerinizi özgürce ifade edebileceğiniz ve ilham alabileceğiniz dijital bir evrendir.</p>
+
+                <p><button type="button" class="btn btn-outline-primary py-2" data-bs-toggle="modal" data-bs-target="#modalResources">Daha Fazla Oku</button></p>
+            </div>
+        </div>
+
+        <div class="half-content d-lg-flex align-items-stretch">
+            <div class="img order-md-2" style="background-image: url('/blogy-1.0.0/images/hero_2.jpg')" data-aos="fade-in">
+            </div>
+            <div class="text">
+                <h2 class="heading text-primary mb-3">5.000'den Fazla Müşteri Bize Güveniyor</h2>
+                <p class="mb-4">Yılların verdiği deneyimle, binlerce yazarın ve okurun buluşma noktasıyız. Güvenilir altyapımız ve kullanıcı dostu arayüzümüzle içerik üreticilerinin yanındayız.</p>
+
+                <p><button type="button" class="btn btn-outline-primary py-2" data-bs-toggle="modal" data-bs-target="#modalTrust">Daha Fazla Oku</button></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section sec-features">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="feature d-flex">
+                    <span class="bi-bag-check-fill"></span>
+                    <div>
+                        <h3>Blogunuzu İnşa Edin</h3>
+                        <p>Kendi tarzınızı yansıtan, modern ve etkileyici bir blog oluşturmak artık çok kolay. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature d-flex">
+                    <span class="bi-wallet-fill"></span>
+                    <div>
+                        <h3>Kaynaklar ve İçgörüler</h3>
+                        <p>Yazarlık kariyerinizi geliştirecek ipuçları ve trend analizleriyle yanınızdayız.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature d-flex">
+                    <span class="bi-pie-chart-fill"></span>
+                    <div>
+                        <h3>Size Özel Blog</h3>
+                        <p>Kişiselleştirilebilir özellikler ile okuyucularınıza eşsiz bir deneyim sunun.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="container">
+
+        <div class="row mb-5">
+            <div class="col-lg-5 mx-auto text-center" data-aos="fade-up">
+                <h2 class="heading text-primary">Yazar Ekibimiz</h2>
+                <p>İçerikleriyle dünyamızı zenginleştiren değerli kalemlerimizle tanışın.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 mb-4 text-center" data-aos="fade-up" data-aos-delay="0">
+                        <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/blogy-1.0.0/images/person_1.jpg" : item.ImageUrl)"
+                             alt="@item.FirstName @item.LastName"
+                             class="img-fluid w-50 rounded-circle mb-3"
+                             style="width: 150px; height: 150px; object-fit: cover;">
+                        <h5 class="text-black">@item.FirstName @item.LastName</h5>
+                        <p>@item.Title</p>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center">
+                    <p>Henüz yazar eklenmemiş.</p>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+
+<div class="section">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-7 mb-4 mb-lg-0">
+                <img src="~/blogy-1.0.0/images/img_7_sq.jpg" alt="Image" class="img-fluid rounded">
+            </div>
+            <div class="col-lg-4 ps-lg-2">
+                <div class="mb-5">
+                    <h2 class="text-black h4">Profesyonel Blog Yazarları İçin Yayın Platformu</h2>
+                    <p>İçeriğinizi en iyi şekilde sunmanız için gereken tüm araçları sağlıyoruz.</p>
+                </div>
+                <div class="d-flex mb-3 service-alt">
+                    <div>
+                        <span class="bi-wallet-fill me-4"></span>
+                    </div>
+                    <div>
+                        <h3>Blogunuzu İnşa Edin</h3>
+                        <p>Teknik bilgiye ihtiyaç duymadan, dakikalar içinde yayına başlayın.</p>
+                    </div>
+                </div>
+                <div class="d-flex mb-3 service-alt">
+                    <div>
+                        <span class="bi-pie-chart-fill me-4"></span>
+                    </div>
+                    <div>
+                        <h3>Kaynaklar ve İçgörüler</h3>
+                        <p>Okuyucu kitlenizi büyütmek için gereken analizlere ulaşın.</p>
+                    </div>
+                </div>
+                <div class="d-flex mb-3 service-alt">
+                    <div>
+                        <span class="bi-bag-check-fill me-4"></span>
+                    </div>
+                    <div>
+                        <h3>Size Özel Blog</h3>
+                        <p>Markanızı yansıtan tasarımlarla fark yaratın.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalResources" tabindex="-1" aria-labelledby="modalResourcesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalResourcesLabel">Yaratıcılar İçin Kaynaklar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Blogy Dünyasına Hoş Geldiniz!</strong></p>
+                <p>Burada yaratıcılığınızı besleyecek binlerce kaynak, ücretsiz görsel kütüphaneleri ve SEO uyumlu yazı araçları bulacaksınız. Amacımız sadece yazı yazmanızı sağlamak değil, yazdıklarınızın milyonlara ulaşmasına yardımcı olmaktır.</p>
+                <p>Platformumuzun sunduğu gelişmiş editör sayesinde:</p>
+                <ul>
+                    <li>Dikkatiniz dağılmadan yazabilir,</li>
+                    <li>Otomatik kaydetme özelliği ile veri kaybı yaşamaz,</li>
+                    <li>Görsellerinizi sürükle-bırak yöntemiyle kolayca ekleyebilirsiniz.</li>
+                </ul>
+                <p>Hayallerinizi yazıya dökmek için en doğru yerdesiniz.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalTrust" tabindex="-1" aria-labelledby="modalTrustLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTrustLabel">Güveniniz Bizim İçin Önemli</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Neden 5.000+ Müşteri Bizi Seçti?</strong></p>
+                <p>Blogy olarak verilerinizi en üst düzey güvenlik protokolleriyle koruyoruz. Yazılarınız, kişisel bilgileriniz ve taslaklarınız bulut sunucularımızda şifrelenerek saklanır.</p>
+                <p>Bize güvenen müşterilerimiz arasında:</p>
+                <ul>
+                    <li>Bağımsız gazeteciler,</li>
+                    <li>Teknoloji blog yazarları,</li>
+                    <li>Kurumsal içerik üreticileri</li>
+                </ul>
+                <p>bulunmaktadır. 7/24 destek ekibimizle her zaman yanınızdayız.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
