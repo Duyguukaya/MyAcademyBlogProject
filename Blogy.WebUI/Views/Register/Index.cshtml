@@ -1,44 +1,98 @@
 ﻿@model RegisterDto
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/UILayout/Index.cshtml";
+	ViewData["Title"] = "Kayıt Ol";
+	Layout = null;
 }
-<div class="container">
-<h3>Yeni Kullanıcı Kaydı</h3>
 
-<form method="post">
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Kayıt Ol</title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 
-    <div class="form-group">
-        <label >Adınız</label>
-        <input type="text" class="form-control" asp-for="FirstName" required />
-    </div>
-    <div class="form-group">
-        <label >Soyadınız</label>
-        <input type="text" class="form-control" asp-for="LastName" required />
-    </div>
-    <div class="form-group">
-        <label >Kullanıcı Adınız</label>
-        <input type="text" class="form-control" asp-for="UserName" required />
-    </div>
-    <div class="form-group">
-        <label >Email Adresiniz</label>
-        <input type="email" class="form-control" asp-for="Email" required />
-    </div>
-    <div class="form-group">
-        <label >Şifreniz</label>
-        <input type="password" class="form-control" asp-for="Password" required />
-    </div>
-    <div class="form-group">
-        <label >Şifre Tekrar</label>
-        <input type="password" class="form-control" asp-for="ConfirmPassword" required />
-    </div>
-	
-    <br />
-        <div asp-validation-summary="All" class="text-danger"></div>
-	<button class="btn btn-outline-primary">Kayıt Ol</button>
-</form>
+	<link rel="icon" href="~/azzara-master/assets/img/icon.ico" type="image/x-icon" />
 
-</div>
+	<script src="~/azzara-master/assets/js/plugin/webfont/webfont.min.js"></script>
+	<script>
+		WebFont.load({
+			google: {"families":["Open+Sans:300,400,600,700"]},
+			custom: {
+				"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"],
+				urls: ['/azzara-master/assets/css/fonts.css']
+			},
+			active: function() {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
 
+	<link rel="stylesheet" href="~/azzara-master/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="~/azzara-master/assets/css/azzara.min.css">
+</head>
 
+<body class="login">
+	<div class="wrapper wrapper-login">
+
+		<div class="container container-login animated fadeIn">
+			<h3 class="text-center">Yeni Kullanıcı Kaydı</h3>
+
+			<form method="post">
+				<div class="login-form">
+
+					<div class="form-group form-floating-label">
+						<input asp-for="FirstName" type="text" class="form-control input-border-bottom" required>
+						<label asp-for="FirstName" class="placeholder">Adınız</label>
+					</div>
+
+					<div class="form-group form-floating-label">
+						<input asp-for="LastName" type="text" class="form-control input-border-bottom" required>
+						<label asp-for="LastName" class="placeholder">Soyadınız</label>
+					</div>
+
+					<div class="form-group form-floating-label">
+						<input asp-for="UserName" type="text" class="form-control input-border-bottom" required>
+						<label asp-for="UserName" class="placeholder">Kullanıcı Adı</label>
+					</div>
+
+					<div class="form-group form-floating-label">
+						<input asp-for="Email" type="email" class="form-control input-border-bottom" required>
+						<label asp-for="Email" class="placeholder">Email Adresi</label>
+					</div>
+
+					<div class="form-group form-floating-label">
+						<input asp-for="Password" type="password" class="form-control input-border-bottom" required>
+						<label asp-for="Password" class="placeholder">Şifre</label>
+						<div class="show-password">
+							<i class="flaticon-interface"></i>
+						</div>
+					</div>
+
+					<div class="form-group form-floating-label">
+						<input asp-for="ConfirmPassword" type="password" class="form-control input-border-bottom" required>
+						<label asp-for="ConfirmPassword" class="placeholder">Şifre Tekrar</label>
+						<div class="show-password">
+							<i class="flaticon-interface"></i>
+						</div>
+					</div>
+
+					<div asp-validation-summary="ModelOnly" class="text-danger mt-3 font-weight-bold"></div>
+
+					<div class="form-action">
+						<a href="/Login/Index" class="btn btn-danger btn-rounded btn-login mr-3">İptal</a>
+						<button type="submit" class="btn btn-primary btn-rounded btn-login">Kayıt Ol</button>
+					</div>
+				</div>
+			</form>
+
+		</div>
+	</div>
+
+	<script src="~/azzara-master/assets/js/core/jquery.3.2.1.min.js"></script>
+	<script src="~/azzara-master/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="~/azzara-master/assets/js/core/popper.min.js"></script>
+	<script src="~/azzara-master/assets/js/core/bootstrap.min.js"></script>
+	<script src="~/azzara-master/assets/js/ready.js"></script>
+</body>
+</html>
