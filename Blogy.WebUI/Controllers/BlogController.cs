@@ -19,12 +19,13 @@ namespace Blogy.WebUI.Controllers
             return View(values);
         }
 
-        public async Task<IActionResult> GetBlogsByCategory(int id)
+        public async Task<IActionResult> GetBlogsByCategory(int id,int page=1,int pageSize=4)
         {
             var category = await _categoryService.GetByIdAsync(id);
             ViewBag.categoryName = category.Name;
             var blogs = await _blogService.GetBlogsByCategoryIdAsync(id);
-            return View(blogs);
+            var values = new PagedList<ResultBlogDto>(blogs.AsQueryable(), page, pageSize);
+            return View(values);
         }
 
         public async Task<IActionResult> BlogDetails(int id)

@@ -111,7 +111,7 @@
 
 				<div class="sidebar-box">
 					<div class="bio text-center">
-						<img src="images/person_2.jpg" alt="Image Placeholder" class="img-fluid mb-3">
+						<img src="@Model.Writer.ImageUrl" alt="Image Placeholder" class="img-fluid mb-3">
 						<div class="bio-body">
 							<h2>@Model.Writer.FullName</h2>
 							<p class="mb-4">@Model.Tittle</p>
@@ -125,58 +125,11 @@
 						</div>
 					</div>
 				</div>
-	
-				<div class="sidebar-box">
-					<h3 class="heading">Popular Posts</h3>
-					<div class="post-entry-sidebar">
-						<ul>
-							<li>
-								<a href="">
-									<img src="images/img_1_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-									<div class="text">
-										<h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-										<div class="post-meta">
-											<span class="mr-2">March 15, 2018 </span>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="">
-									<img src="images/img_2_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-									<div class="text">
-										<h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-										<div class="post-meta">
-											<span class="mr-2">March 15, 2018 </span>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="">
-									<img src="images/img_3_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-									<div class="text">
-										<h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-										<div class="post-meta">
-											<span class="mr-2">March 15, 2018 </span>
-										</div>
-									</div>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
 
-				<div class="sidebar-box">
-					<h3 class="heading">Categories</h3>
-					<ul class="categories">
-						<li><a href="#">Food <span>(12)</span></a></li>
-						<li><a href="#">Travel <span>(22)</span></a></li>
-						<li><a href="#">Lifestyle <span>(37)</span></a></li>
-						<li><a href="#">Business <span>(42)</span></a></li>
-						<li><a href="#">Adventure <span>(14)</span></a></li>
-					</ul>
-				</div>
+				@await Component.InvokeAsync("_BlogsByCategoryLatestBlogComponent")
+
+				@await Component.InvokeAsync("_ListCategoriesComponent")
+
 	
 
 				<div class="sidebar-box">
