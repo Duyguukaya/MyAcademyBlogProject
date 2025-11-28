@@ -2,6 +2,7 @@
 using Blogy.Business.DTOs.BlogDtos;
 using Blogy.DataAccess.Repositories.BlogRepositories;
 using Blogy.Entity.Entities;
+using System.Threading.Tasks;
 
 namespace Blogy.Business.Services.BlogServices
 {
@@ -54,6 +55,12 @@ namespace Blogy.Business.Services.BlogServices
             return _mapper.Map<List<ResultBlogDto>>(values);
         }
 
+        public async Task<List<ResultBlogDto>> GetListByWriter(int id)
+        {
+            var values = await _blogRepository.GetAllAsync(x => x.WriterId == id);
+            return _mapper.Map<List<ResultBlogDto>>(values);
+        }
+
         public async Task<ResultBlogDto> GetSingleByIdAsync(int id)
         {
             var values = await _blogRepository.GetByIdAsync(id);
@@ -65,5 +72,7 @@ namespace Blogy.Business.Services.BlogServices
             var entity = _mapper.Map<Blog>(updateDto);
             await _blogRepository.UpdateAsync(entity);
         }
+
+      
     }
 }
