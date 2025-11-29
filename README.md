@@ -67,21 +67,13 @@ Proje **Solid** prensiplerine uygun olarak **N-Katmanlı Mimari (N-Layer Archite
 
 ## 📷 Ekran Görüntüleri
 
-| Admin Dashboard | Blog Detay & Yorum |
-| :---: | :---: |
-| ![Admin](https://via.placeholder.com/400x200?text=Admin+Panel) | ![Blog](https://via.placeholder.com/400x200?text=Blog+Detail+AI) |
+## Blogy Web Sayfası
+# Anasayfa
+<img width="1894" height="830" alt="Ekran görüntüsü 2025-11-29 223308" src="https://github.com/user-attachments/assets/07058ce1-f4e2-4313-8d82-d91dafc7f8bf" />
+<img width="1890" height="824" alt="Ekran görüntüsü 2025-11-29 223301" src="https://github.com/user-attachments/assets/77c61296-d0f2-4089-a26d-263816a815b4" />
+<img width="1893" height="829" alt="Ekran görüntüsü 2025-11-29 223253" src="https://github.com/user-attachments/assets/67202493-282d-446d-9807-1c431b569e22" />
+<img width="1896" height="828" alt="Ekran görüntüsü 2025-11-29 223245" src="https://github.com/user-attachments/assets/3597286b-ea48-458b-9624-c9bb837b9517" />
+<img width="1895" height="825" alt="Ekran görüntüsü 2025-11-29 223238" src="https://github.com/user-attachments/assets/f92cc9b4-47c5-4dbe-bbca-352b8fcd5239" />
+<img width="1895" height="822" alt="Ekran görüntüsü 2025-11-29 223230" src="https://github.com/user-attachments/assets/846cf24d-7ab9-436f-b868-65c73893c7f0" />
+<img width="1907" height="835" alt="Ekran görüntüsü 2025-11-29 223220" src="https://github.com/user-attachments/assets/159906c1-a8f7-4c7b-8207-47cf1325d0c9" />
 
-| Yazar Paneli | AI Chatbox |
-| :---: | :---: |
-| ![Writer](https://via.placeholder.com/400x200?text=Writer+Panel) | ![Chat](https://via.placeholder.com/400x200?text=Chatbox) |
-
----
-
-
-
-Geliştirici: **[Adınız Soyadınız]**
-LinkedIn: [linkedin.com/in/profiliniz](https://linkedin.com/in/profiliniz)
-GitHub: [github.com/KullaniciAdiniz](https://github.com/KullaniciAdiniz)
-
----
-*Bu proje, modern web geliştirme standartları ve yapay zeka teknolojileri kullanılarak geliştirilmiştir.*
