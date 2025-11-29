@@ -1,0 +1,73 @@
+﻿@using Blogy.Business.DTOs.CommentDtos
+@model List<ResultCommentDto>
+@{
+    ViewData["Title"] = "MyComments";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    var count = 0;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-head-row">
+                    <div class="card-title">Yaptığım Yorumlar</div>
+                </div>
+            </div>
+            <div class="card-body">
+                @if (Model.Count == 0)
+                {
+                    <div class="alert alert-info">Henüz herhangi bir blog yazısına yorum yapmadınız.</div>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Blog Başlığı</th>
+                                    <th>Yorum İçeriği</th>
+                                    <th>Tarih</th>
+                                    <th>İşlem</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <td>@count</td>
+                                        <td>
+                                            <a href="/Blog/BlogDetails/@item.BlogId" target="_blank">
+                                                @(item.Blog?.Tittle ?? "Blog Bulunamadı")
+                                            </a>
+                                        </td>
+                                        <td>
+                                            @if (item.Content.Length > 50)
+                                            {
+                                                @item.Content.Substring(0, 50) <text>...</text>
+                                            }
+                                            else
+                                            {
+                                                @item.Content
+                                            }
+                                        </td>
+                                        <td>@(((DateTime)item.CreatedDate).ToString("dd MMM yyyy"))</td>
+                                        
+                                        <td>
+                                            <a href="/Comment/DeleteComment/@item.Id" class="btn btn-danger btn-sm" onclick="return confirm('Bu yorumu silmek istediğinize emin misiniz?');">
+                                                <i class="fas fa-trash"></i> Sil
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -27,7 +27,28 @@
     </div>
 </div>
 
-<div class="section sec-halfs py-0">
+<div class="container mt-5">
+    <div class="p-4 rounded shadow-sm" style="background-color: #f8f9fa; border-left: 5px solid #007bff;">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h4 class="text-primary mb-2"><i class="bi bi-robot"></i> Footer Yazısı Yönetimi</h4>
+                <p class="text-muted mb-0 small">
+                    <strong>Şu anki Footer Yazısı:</strong> <br />
+                    "@(ViewBag.FooterText ?? "Henüz bir yazı yok.")"
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                <form asp-controller="About" asp-action="GenerateFooterWithAI" method="post">
+                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                        <i class="bi bi-magic"></i> Yapay Zeka ile Yenile
+                    </button>
+                </form>
+                <small class="d-block mt-2 text-muted fst-italic">* Footer'daki hakkımızda yazısını AI baştan yazar.</small>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section sec-halfs py-5">
     <div class="container">
         <div class="half-content d-lg-flex align-items-stretch">
             <div class="img" style="background-image: url('/blogy-1.0.0/images/hero_1.jpg')" data-aos="fade-in" data-aos-delay="100">

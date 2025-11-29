@@ -7,5 +7,6 @@
         public string Subject { get; set; }
         public string Content { get; set; }
         public bool IsRead { get; set; } = false;
+        public string? AutoReply { get; set; }
     }
 }

@@ -38,8 +38,17 @@ namespace Blogy.Business.Services.MessageServices
 
         public async Task UpdateAsync(UpdateMessageDto updateDto)
         {
-            var entity = _mapper.Map<Message>(updateDto);
-            await _messageRepository.UpdateAsync(entity);
+
+            var existingEntity = await _messageRepository.GetByIdAsync(updateDto.Id);
+
+            if (existingEntity != null)
+            {
+
+                _mapper.Map(updateDto, existingEntity);
+
+
+                await _messageRepository.UpdateAsync(existingEntity);
+            }
         }
     }
 }

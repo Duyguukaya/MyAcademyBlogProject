@@ -1,6 +1,10 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@using Blogy.Entity.Entities
+@inject UserManager<AppUser> _userManager
+
 @{
     Layout = null;
+    var currentUser = await _userManager.FindByNameAsync(User.Identity.Name);
 }
 
 <style>
@@ -26,7 +30,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Breeze Admin</title>
+    <title>Blogy Admin</title>
     <link rel="stylesheet" href="~/Breeze-Free-Bootstrap-Admin-Template-1.0.0/template/assets/vendors/mdi/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="~/Breeze-Free-Bootstrap-Admin-Template-1.0.0/template/assets/vendors/flag-icon-css/css/flag-icon.min.css" />
     <link rel="stylesheet" href="~/Breeze-Free-Bootstrap-Admin-Template-1.0.0/template/assets/vendors/css/vendor.bundle.base.css" />
@@ -47,12 +51,14 @@
                 <li class="nav-item nav-profile">
                     <a href="#" class="nav-link">
                         <div class="nav-profile-image">
-                            <img src="~/Breeze-Free-Bootstrap-Admin-Template-1.0.0/template/assets/images/faces/face1.jpg" alt="profile" />
+                            <img src="@(currentUser != null ? currentUser.ImageUrl : "/default-profile.jpg")" alt="profile" />
                             <span class="login-status online"></span>
                         </div>
                         <div class="nav-profile-text d-flex flex-column pr-3">
-                            <span class="font-weight-medium mb-2">Henry Klein</span>
-                            <span class="font-weight-normal text-secondary">Admin</span>
+                            <span class="font-weight-medium mb-2">
+                                @(currentUser != null ? currentUser.FirstName + " " + currentUser.LastName : "Misafir")
+                            </span>
+                            <span class="font-weight-normal text-secondary" style="color:black!important">Admin</span>
                         </div>
                     </a>
                 </li>
@@ -89,6 +95,12 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="/Admin/Message/Index">
+                        <i class="mdi mdi-email menu-icon"></i>
+                        <span class="menu-title">Mesajlar</span>
+                    </a>
+                </li>
                 <li class="nav-item nav-category">
                     <span class="nav-link">Yönetim</span>
                 </li>
@@ -141,15 +153,16 @@
               
                         <li class="nav-item nav-profile dropdown border-0">
                             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
-                                <img class="nav-profile-img mr-2" alt="" src="~/Breeze-Free-Bootstrap-Admin-Template-1.0.0/template/assets/images/faces/face1.jpg" />
-                                <span class="profile-name" style="color:black">Henry Klein</span>
+                                <img class="nav-profile-img mr-2" alt="" src="@(currentUser != null ? currentUser.ImageUrl : "")" />
+                                <span class="profile-name" style="color:black">
+                                    @(currentUser != null ? currentUser.FirstName + " " + currentUser.LastName : "")
+                                </span>
                             </a>
-                            <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="mdi mdi-logout mr-2 text-primary"></i> Signout
+                            <div >
+                              
+                          
+                                <a asp-area="" asp-controller="Login" asp-action="Index" class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
+                                    <i class="mdi mdi-logout mr-2 text-primary"></i> Çıkış Yap
                                 </a>
                             </div>
                         </li>

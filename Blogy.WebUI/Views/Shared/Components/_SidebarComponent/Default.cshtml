@@ -1,0 +1,87 @@
+﻿@using Blogy.Entity.Entities
+@model AppUser
+
+<div class="sidebar">
+    <div class="sidebar-background"></div>
+    <div class="sidebar-wrapper scrollbar-inner">
+        <div class="sidebar-content">
+
+            <div class="user">
+                <div class="avatar-sm float-left mr-2">
+                    <img src="@Model.ImageUrl" alt="..." class="avatar-img rounded-circle" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="info">
+                    <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+                        <span>
+                            @Model.FirstName @Model.LastName
+                            <span class="user-level">Yazar Paneli</span>
+                        </span>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <ul class="nav">
+
+                <li class="nav-item active">
+                    <a href="/Writer/Dashboard/Index">
+                        <i class="fas fa-home"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+
+                <li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                    <h4 class="text-section">İçerik Yönetimi</h4>
+                </li>
+
+           
+
+                <li class="nav-item">
+                    <a href="/Writer/Blog/Index">
+                        <i class="fas fa-pen-nib"></i>
+                        <p>Bloglarım</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/Writer/Comment/Index">
+                        <i class="fas fa-comments"></i>
+                        <p>Yorumlar</p>
+                    </a>
+                </li>
+
+                <li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                    <h4 class="text-section">Ayarlar</h4>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/Writer/Profile/Index">
+                        <i class="fas fa-user-edit"></i>
+                        <p>Profil Güncelle</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/Writer/ChangePassword/Index">
+                        <i class="fas fa-key"></i>
+                        <p>Şifre Değiştir</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a asp-area="" asp-controller="Login" asp-action="Index" class="text-danger">
+                        <i class="fas fa-sign-out-alt text-danger"></i>
+                        <p>Çıkış Yap</p>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>

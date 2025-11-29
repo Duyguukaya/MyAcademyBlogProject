@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using OpenAI.Chat; // OpenAI kütüphanesi eklendi
 
 namespace Blogy.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles =Roles.Admin)]
-    public class BlogController(IBlogService _blogService, ICategoryService _categoryService,UserManager<AppUser> _userManager) : Controller
+    [Authorize(Roles = Roles.Admin)]
+    // 1. DEĞİŞİKLİK: IConfiguration parametresi eklendi
+    public class BlogController(IBlogService _blogService, ICategoryService _categoryService, UserManager<AppUser> _userManager, IConfiguration _configuration) : Controller
     {
         private async Task GetCategoriesAsync()
         {
@@ -24,8 +26,6 @@ namespace Blogy.WebUI.Areas.Admin.Controllers
                                       Value = category.Id.ToString()
                                   }).ToList();
         }
-
-
 
         public async Task<IActionResult> Index()
         {
@@ -81,6 +81,57 @@ namespace Blogy.WebUI.Areas.Admin.Controllers
             updateBlogDto.WriterId = user.Id;
             await _blogService.UpdateAsync(updateBlogDto);
             return RedirectToAction(nameof(Index));
+        }
+
+ 
+       
+        [HttpPost]
+        public async Task<IActionResult> GenerateArticleWithAI(string keywords, string prompt)
+        {
+            if (string.IsNullOrEmpty(keywords) || string.IsNullOrEmpty(prompt))
+            {
+                return Json(new { success = false, message = "Lütfen anahtar kelime ve konu giriniz." });
+            }
+
+            try
+            {
+                string apiKey = _configuration["OpenAI:ApiKey"];
+                if (string.IsNullOrEmpty(apiKey))
+                    return Json(new { success = false, message = "API anahtarı bulunamadı." });
+
+                ChatClient client = new ChatClient(model: "gpt-4o-mini", apiKey: apiKey);
+
+                // SİSTEM MESAJI: Genel rol tanımı
+                string systemMessage = "Sen profesyonel bir blog yazarısın.";
+
+                // KULLANICI MESAJI (PROMPT): Burayı düzelttik
+                string userMessage = $@"
+            Aşağıdaki bilgilere göre bir blog yazısı yaz.
+            Konu: {prompt}
+            Anahtar Kelimeler: {keywords}
+            
+            Kurallar:
+            1. Makale yaklaşık 1000 karakter uzunluğunda olsun.
+            2. ASLA HTML etiketi (<p>, <h3>, <strong> vb.) KULLANMA.
+            3. Sadece düz metin (plain text) olarak çıktı ver.
+            4. Paragraflar arasında bir satır boşluk bırak.
+            5. Başlıkları büyük harfle veya belirgin yaz ama etiket içine alma.
+            6. Anahtar kelimeleri doğal bir şekilde metne yedir.
+        ";
+
+                ChatCompletion completion = await client.CompleteChatAsync(
+                    new SystemChatMessage(systemMessage),
+                    new UserChatMessage(userMessage)
+                );
+
+                string generatedContent = completion.Content[0].Text;
+
+                return Json(new { success = true, content = generatedContent });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Hata: " + ex.Message });
+            }
         }
     }
 }

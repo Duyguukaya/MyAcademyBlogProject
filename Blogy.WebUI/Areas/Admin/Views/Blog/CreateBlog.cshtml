@@ -1,41 +1,153 @@
 ﻿@model CreateBlogDto
 @{
-	ViewData["Title"] = "CreateBlog";
-	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "CreateBlog";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h3>Yeni Blog Oluştur</h3>
+<div class="row">
+    <div class="col-md-4 grid-margin stretch-card">
+        <div class="card bg-gradient-primary text-white" style="background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);">
+            <div class="card-body">
+                <h4 class="card-title text-white">
+                    <i class="mdi mdi-robot"></i> AI İçerik Üretici
+                </h4>
+                <p class="card-description text-white-50">
+                    Konuyu yazın, makaleyi AI oluştursun.
+                </p>
 
-<form method="post">
-	<div class="form-group">
-		<label>Blog Başlığı</label>
-		<input type="text" asp-for="Tittle" class="form-control" />
-		<span asp-validation-for="Tittle" class="text-danger"></span>
+                <div class="form-group">
+                    <label class="text-white">Anahtar Kelimeler</label>
+                    <input type="text" id="aiKeywords" class="form-control text-white"
+                           placeholder="Örn: Teknoloji, Yazılım"
+                           style="background-color: rgba(255,255,255,0.2); border: none;">
+                </div>
 
-		<label>Açıklama</label>
-		<textarea typeof="text" asp-for="Description" class="form-control" rows="6"></textarea>
-		<span asp-validation-for="Description" class="text-danger"></span>
+                <div class="form-group">
+                    <label class="text-white">Konu Cümlesi</label>
+                    <textarea id="aiPrompt" class="form-control text-white" rows="4"
+                              placeholder="Örn: Yapay zekanın geleceği..."
+                              style="background-color: rgba(255,255,255,0.2); border: none;"></textarea>
+                </div>
 
-		<label>Kapak Resmi</label>
-		<input type="text" asp-for="CoverImage" class="form-control" />
-		<span asp-validation-for="CoverImage" class="text-danger"></span>
+                <button type="button" onclick="generateArticle()" id="btnGenerate" class="btn btn-light btn-block font-weight-bold">
+                    <i class="mdi mdi-magic-staff"></i> Makale Oluştur
+                </button>
 
-		<label>Blog Resmi 1</label>
-		<input type="text" asp-for="BlogImage1" class="form-control" />
-		<span asp-validation-for="BlogImage1" class="text-danger"></span>
+                <div id="loadingSpinner" style="display:none;" class="mt-3 text-center text-white">
+                    <div class="spinner-border spinner-border-sm" role="status"></div>
+                    <span class="ml-2">Yapay zeka yazıyor...</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-		<label>Blog Resmi 2</label>
-		<input type="text" asp-for="BlogImage2" class="form-control" />
-		<span asp-validation-for="BlogImage2" class="text-danger"></span>
+    <div class="col-md-8 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Yeni Blog Oluştur</h3>
 
-		<label>Kategori Adı</label>
-		<select asp-for="CategoryId" class="form-control" asp-items="ViewBag.categories">
-			<option selected>Kategori Seçiniz</option>
-		</select>
-		<span asp-validation-for="CategoryId" class="text-danger"></span>
+                <form method="post">
+                    <div class="form-group">
+                        <label>Blog Başlığı</label>
+                        <input type="text" asp-for="Tittle" id="txtTitle" class="form-control" />
+                        <span asp-validation-for="Tittle" class="text-danger"></span>
+                    </div>
 
-	</div>
-	<br />
-	<button class="btn btn-primary">Kaydet</button>
+                    <div class="form-group">
+                        <label>Açıklama (İçerik)</label>
+                        <textarea typeof="text" asp-for="Description" id="txtDescription" class="form-control" rows="15"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
 
-</form>
+                    <div class="form-group">
+                        <label>Kapak Resmi URL</label>
+                        <input type="text" asp-for="CoverImage" class="form-control" />
+                        <span asp-validation-for="CoverImage" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Blog Resmi 1</label>
+                                <input type="text" asp-for="BlogImage1" class="form-control" />
+                                <span asp-validation-for="BlogImage1" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Blog Resmi 2</label>
+                                <input type="text" asp-for="BlogImage2" class="form-control" />
+                                <span asp-validation-for="BlogImage2" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Kategori Adı</label>
+                        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.categories">
+                            <option selected value="">Kategori Seçiniz</option>
+                        </select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+
+                    <br />
+                    <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
+                    <a href="/Admin/Blog/Index" class="btn btn-light">İptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function generateArticle() {
+        // Girdileri al
+        var keywords = document.getElementById("aiKeywords").value;
+        var prompt = document.getElementById("aiPrompt").value;
+
+        // Elementleri seç
+        var btn = document.getElementById("btnGenerate");
+        var spinner = document.getElementById("loadingSpinner");
+
+        // Basit Doğrulama
+        if (keywords.trim() === "" || prompt.trim() === "") {
+            alert("Lütfen anahtar kelime ve konu cümlesini giriniz.");
+            return;
+        }
+
+        // Butonu kilitle, spinner'ı aç
+        btn.disabled = true;
+        spinner.style.display = "block";
+
+        // Controller'a İstek At
+        $.ajax({
+            type: "POST",
+            url: "/Admin/Blog/GenerateArticleWithAI", // Controller'daki metodumuz
+            data: { keywords: keywords, prompt: prompt },
+            success: function (response) {
+                // İşlem bitince buton ve spinner'ı eski haline getir
+                btn.disabled = false;
+                spinner.style.display = "none";
+
+                if (response.success) {
+                    // 1. Gelen makaleyi Açıklama alanına yaz
+                    document.getElementById("txtDescription").value = response.content;
+
+                    // 2. Eğer başlık boşsa, prompt'u başlık yap
+                    var currentTitle = document.getElementById("txtTitle").value;
+                    if(currentTitle === "") {
+                        document.getElementById("txtTitle").value = prompt;
+                    }
+                } else {
+                    alert("Hata: " + response.message);
+                }
+            },
+            error: function () {
+                btn.disabled = false;
+                spinner.style.display = "none";
+                alert("Bir hata oluştu. Lütfen tekrar deneyiniz.");
+            }
+        });
+    }
+</script>

@@ -9,5 +9,6 @@ namespace Blogy.Entity.Entities
         public virtual Blog Blog { get; set; }
         public int UserId { get; set; }
         public virtual AppUser User { get; set; }
+        public bool IsApproved { get; set; }
     }
 }

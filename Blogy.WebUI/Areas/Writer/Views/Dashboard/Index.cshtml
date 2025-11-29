@@ -1,0 +1,189 @@
+﻿@using Blogy.Entity.Entities
+@model List<Blog>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+    var count = 0;
+}
+<div class="row">
+    <div class="col-sm-6 col-md-3">
+        <div class="card card-stats card-round">
+            <div class="card-body ">
+                <div class="row align-items-center">
+                    <div class="col-icon">
+                        <div class="icon-big text-center icon-primary bubble-shadow-small">
+                            <i class="fas fa-pen-nib"></i>
+                        </div>
+                    </div>
+                    <div class="col col-stats ml-3 ml-sm-0">
+                        <div class="numbers">
+                            <p class="card-category">Bloglarım</p>
+                            <h4 class="card-title">@ViewBag.v1</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3">
+        <div class="card card-stats card-round">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-icon">
+                        <div class="icon-big text-center icon-info bubble-shadow-small">
+                            <i class="far fa-comments"></i>
+                        </div>
+                    </div>
+                    <div class="col col-stats ml-3 ml-sm-0">
+                        <div class="numbers">
+                            <p class="card-category">Yorumlar</p>
+                            <h4 class="card-title">@ViewBag.v2</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3">
+        <div class="card card-stats card-round">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-icon">
+                        <div class="icon-big text-center icon-success bubble-shadow-small">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <div class="col col-stats ml-3 ml-sm-0">
+                        <div class="numbers">
+                            <p class="card-category">Etkileşim</p>
+                            <h4 class="card-title">@ViewBag.v3</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3">
+        <div class="card card-stats card-round">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-icon">
+                        <div class="icon-big text-center icon-secondary bubble-shadow-small">
+                            <i class="far fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <div class="col col-stats ml-3 ml-sm-0">
+                        <div class="numbers">
+                            <p class="card-category">Tarih</p>
+                            <h4 class="card-title">@DateTime.Now.ToString("dd MMM")</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-head-row">
+                    <div class="card-title">Son Blog Yazılarım</div>
+                    <div class="card-tools">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Başlık</th>
+                                <th>Kategori</th>
+                                <th>Tarih</th>
+                                <th>Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <td>@count</td>
+                                    <td>@item.Tittle</td>
+                                    <td>
+                                        @if (item.Category != null)
+                                        {
+                                            @item.Category.Name
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">-</span>
+                                        }
+                                    </td>
+                                    <td>@item.CreatedDate.ToString("dd.MM.yyyy")</td>
+                                    <td>
+                                        <span class="badge badge-success">Yayında</span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-profile">
+            <div class="card-header" style="background-image: url('/Traversal-Starter/assets/img/blog-header.jpg')">
+                <div class="profile-picture">
+                    <div class="avatar avatar-xl">
+                        <img src="@ViewBag.Resim" alt="Profil Resmi" class="avatar-img rounded-circle">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="user-profile text-center">
+                    <div class="name">@ViewBag.AdSoyad</div>
+                    <div class="job">@ViewBag.Meslek</div>
+                    <div class="desc">Merhaba,@ViewBag.Meslek üzerine içerikler üretiyorum.</div>
+                    <div class="view-profile mt-3">
+                        <a href="/Writer/Profile/Index" class="btn btn-secondary btn-block">Profili Düzenle</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Sistem Bildirimleri</div>
+            </div>
+            <div class="card-body">
+                <ol class="activity-feed">
+
+                    <li class="feed-item feed-item-secondary">
+                        <time class="date" datetime="9-25">@DateTime.Now.ToString("dd MMM")</time>
+                        <span class="text">Hoşgeldiniz! Blogy yazar paneli aktifleştirildi.</span>
+                    </li>
+                    <li class="feed-item feed-item-success">
+                        <time class="date" datetime="9-24">@DateTime.Now.AddDays(-2).ToString("dd MMM")</time>
+                        <span class="text">Blog yazma kuralları güncellendi.</span>
+                    </li>
+                    <li class="feed-item feed-item-info">
+                        <time class="date" datetime="9-23">@DateTime.Now.AddDays(-5).ToString("dd MMM")</time>
+                        <span class="text">Lütfen profil bilgilerinizi eksiksiz doldurunuz.</span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

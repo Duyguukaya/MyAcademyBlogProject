@@ -1,0 +1,134 @@
+﻿@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="page-header flex-wrap">
+	<h3 class="mb-0">
+		Merhaba, tekrardan hoşgeldin!
+	</h3>
+</div>
+<div class="row">
+	<div class="col-xl-4 col-lg-12 stretch-card grid-margin">
+		<div class="row">
+			<div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+				<div class="card bg-primary">
+					<div class="card-body px-3 py-4">
+						<div class="d-flex justify-content-between align-items-start">
+							<div class="color-card">
+								<p class="mb-0 color-card-head">Toplam Blog Sayısı</p>
+								<h2 class="text-white">
+									@ViewBag.blogs
+								</h2>
+							</div>
+							<i class="card-icon-indicator mdi mdi-file-document bg-inverse-icon-primary"></i>
+						</div>
+						<h6 class="text-white">Sistemdeki toplam içerik</h6>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+				<div class="card bg-success">
+					<div class="card-body px-3 py-4">
+						<div class="d-flex justify-content-between align-items-start">
+							<div class="color-card">
+								<p class="mb-0 color-card-head">Kategoriler</p>
+								<h2 class="text-white">
+									@ViewBag.categories
+								</h2>
+							</div>
+							<i class="card-icon-indicator mdi mdi-shape bg-inverse-icon-success"></i>
+						</div>
+						<h6 class="text-white">Aktif kategori sayısı</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xl-4 col-lg-12 stretch-card grid-margin">
+		<div class="row">
+			<div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+				<div class="card bg-warning">
+					<div class="card-body px-3 py-4">
+						<div class="d-flex justify-content-between align-items-start">
+							<div class="color-card">
+								<p class="mb-0 color-card-head">Yazar Sayısı</p>
+								<h2 class="text-white">
+									@ViewBag.yazarlar
+								</h2>
+							</div>
+							<i class="card-icon-indicator mdi mdi-fountain-pen-tip bg-inverse-icon-warning"></i>
+						</div>
+						<h6 class="text-white">İçerik üreten yazar sayısı</h6>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+				<div class="card bg-danger">
+					<div class="card-body px-3 py-4">
+						<div class="d-flex justify-content-between align-items-start">
+							<div class="color-card">
+								<p class="mb-0 color-card-head">Toplam Üye</p>
+								<h2 class="text-white">
+									@ViewBag.users
+								</h2>
+							</div>
+							<i class="card-icon-indicator mdi mdi-account-group bg-inverse-icon-danger"></i>
+						</div>
+						<h6 class="text-white">Kayıtlı tüm kullanıcılar</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xl-4 col-lg-12 stretch-card grid-margin">
+		<div class="row">
+			<div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+				<div class="card bg-info">
+					<div class="card-body px-3 py-4">
+						<div class="d-flex justify-content-between align-items-start">
+							<div class="color-card">
+								<p class="mb-0 color-card-head">Etiketler</p>
+								<h2 class="text-white">
+									@ViewBag.tags
+								</h2>
+							</div>
+							<i class="card-icon-indicator mdi mdi-tag-multiple bg-inverse-icon-info"></i>
+						</div>
+						<h6 class="text-white">Tanımlanmış etiket sayısı</h6>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+				<div class="card bg-dark">
+					<div class="card-body px-3 py-4">
+						<div class="d-flex justify-content-between align-items-start">
+							<div class="color-card">
+								<p class="mb-0 color-card-head">En Popüler Blog</p>
+								<h4 class="text-white mt-2">
+									@(ViewBag.EnPopulerBlog.Length > 20 ? ViewBag.EnPopulerBlog.Substring(0, 17) + "..." : ViewBag.EnPopulerBlog)
+								</h4>
+							</div>
+							<i class="card-icon-indicator mdi mdi-star bg-inverse-icon-secondary"></i>
+						</div>
+						<h6 class="text-white">En çok yorum alan içerik</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	@await Component.InvokeAsync("_BlogsComponent")
+
+
+</div>
+<div class="row">
+	@await Component.InvokeAsync("_WriterComponent")
+</div>

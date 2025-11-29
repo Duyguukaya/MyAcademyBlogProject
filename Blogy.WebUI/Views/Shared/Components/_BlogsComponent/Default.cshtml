@@ -1,0 +1,42 @@
+﻿@model List<ResultBlogDto>
+@*
+_BlogsComponent
+*@
+<div class="col-xl-12 col-sm-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body px-0 overflow-auto">
+            <h4 class="card-title pl-4">Son Eklenen Bloglar</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Yazar</th>
+                            <th>Blog Adı</th>
+                            <th>Blog Kategorisi</th>
+                            <th>Oluşturulma Zamanı</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model){
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="@item.Writer.ImageUrl" alt="image" />
+                                    <div class="table-user-name ml-3">
+                                        <p class="mb-0 font-weight-medium"> @item.Writer.FullName </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>@item.Tittle</td>
+                            <td>
+                                @item.Category.CategoryName
+                            </td>
+                            <td>@item.CreatedDate</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

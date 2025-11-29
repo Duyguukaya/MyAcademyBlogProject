@@ -1,0 +1,115 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html class="loading" lang="tr" data-textdirection="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Kullanıcı Paneli - Blogy</title>
+    <link rel="apple-touch-icon" href="~/chameleon-admin-free-bootstrap-dashboard-template-v1.0/theme-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="~/chameleon-admin-free-bootstrap-dashboard-template-v1.0/theme-assets/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
+    <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/chameleon-admin-free-bootstrap-dashboard-template-v1.0/theme-assets/css/vendors.css">
+    <link rel="stylesheet" type="text/css" href="~/chameleon-admin-free-bootstrap-dashboard-template-v1.0/theme-assets/vendors/css/charts/chartist.css">
+    <link rel="stylesheet" type="text/css" href="~/chameleon-admin-free-bootstrap-dashboard-template-v1.0/theme-assets/css/app-lite.css">
+    <link rel="stylesheet" type="text/css" href="~/chameleon-admin-free-bootstrap-dashboard-template-v1.0/theme-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="~/chameleon-admin-free-bootstrap-dashboard-template-v1.0/theme-assets/css/core/colors/palette-gradient.css">
+    <link rel="stylesheet" type="text/css" href="~/chameleon-admin-free-bootstrap-dashboard-template-v1.0/theme-assets/css/pages/dashboard-ecommerce.css">
+</head>
+
+<body class="vertical-layout vertical-menu 2-columns menu-expanded fixed-navbar" data-open="click" data-menu="vertical-menu">
+
+    <!-- ÜST MENÜ -->
+    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-semi-light">
+        <div class="navbar-wrapper">
+            <div class="navbar-container content">
+                <div class="collapse navbar-collapse show" id="navbar-mobile">
+
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item d-block d-md-none">
+                            <a class="nav-link menu-toggle" href="#"><i class="ft-menu"></i></a>
+                        </li>
+                        <li class="nav-item d-none d-md-block">
+                            <a class="nav-link nav-link-expand"><i class="ficon ft-maximize"></i></a>
+                        </li>
+                    </ul>
+
+                  
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SOL MENÜ -->
+    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item mr-auto">
+                    <a class="navbar-brand" href="/Dashboard/Index">
+                        <img class="brand-logo" src="~/chameleon-admin-free-bootstrap-dashboard-template-v1.0/theme-assets/images/logo/logo.png" alt="logo" />
+                        <h3 class="brand-text">Blogy</h3>
+                    </a>
+                </li>
+                <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
+            </ul>
+        </div>
+
+        <div class="main-menu-content">
+            <ul class="navigation navigation-main">
+
+                <li class="nav-item">
+                    <a href="/Profile/Index"><i class="ft-user"></i><span class="menu-title">Profilim</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/ChangePassword/Index"><i class="ft-lock"></i><span class="menu-title">Şifre Değiştirme</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/Comment/MyComments"><i class="ft-message-square"></i><span class="menu-title">Yaptığım Yorumlar</span></a>
+                </li>
+
+                <li class="navigation-header">
+                    <span>Siteye Git</span>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/Default/Index"><i class="ft-external-link"></i><span class="menu-title">Ana Sayfa</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/Login/Index"><i class="ft-power"></i><span class="menu-title">Çıkış Yap</span></a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- İÇERİK -->
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-body">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer footer-static footer-light">
+        <div class="clearfix blue-grey lighten-2 text-sm-center px-2">
+            <span>@DateTime.Now.Year © Blogy Yazılım</span>
+        </div>
+    </footer>
+
+    <script src="~/chameleon-admin-free-bootstrap-dashboard-template-v1.0/theme-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+    <script src="~/chameleon-admin-free-bootstrap-dashboard-template-v1.0/theme-assets/vendors/js/charts/chartist.min.js" type="text/javascript"></script>
+    <script src="~/chameleon-admin-free-bootstrap-dashboard-template-v1.0/theme-assets/js/core/app-menu-lite.js" type="text/javascript"></script>
+    <script src="~/chameleon-admin-free-bootstrap-dashboard-template-v1.0/theme-assets/js/core/app-lite.js" type="text/javascript"></script>
+    <script src="~/chameleon-admin-free-bootstrap-dashboard-template-v1.0/theme-assets/js/scripts/pages/dashboard-lite.js" type="text/javascript"></script>
+</body>
+</html>

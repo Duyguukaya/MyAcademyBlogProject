@@ -4,7 +4,7 @@ using Blogy.WebUI.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 
 builder.Services.AddServicesExt();
 builder.Services.AddRepositoriesExt(builder.Configuration);
@@ -48,6 +48,6 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Default}/{action=Index}/{id?}");
 
 app.Run();

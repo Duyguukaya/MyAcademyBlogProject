@@ -29,15 +29,15 @@ namespace Blogy.WebUI.Controllers
 
             if (roles.Contains("Admin"))
             {
-                return RedirectToAction("Index", "Blog", new { area = "Admin" });
+                return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
             }
             else if (roles.Contains("Writer"))
             {
-                return RedirectToAction("Index", "Dashboard", new { area = "Writer" }); 
+                return RedirectToAction("Index", "Blog", new { area = "Writer" }); 
             }
             else if (roles.Contains("User"))
             {
-                return RedirectToAction("Index", "Default"); 
+                return RedirectToAction("Index", "Profile"); 
             }
 
             return RedirectToAction("Index", "Home");

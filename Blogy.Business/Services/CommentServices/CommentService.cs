@@ -37,6 +37,15 @@ namespace Blogy.Business.Services.CommentServices
             return _mapper.Map<UpdateCommentDto>(values);
         }
 
+        public async Task<List<ResultCommentDto>> GetCommentsByWriterAsync(int writerId)
+        {
+            var values = await _commentRepository.GetAllAsync();
+
+            var result = values.Where(x => x.Blog.WriterId == writerId).ToList();
+
+            return _mapper.Map<List<ResultCommentDto>>(result);
+        }
+
         public async Task<ResultCommentDto> GetSingleByIdAsync(int id)
         {
             var values = await _commentRepository.GetByIdAsync(id);

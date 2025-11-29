@@ -1,0 +1,57 @@
+﻿@model EditProfileDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<h1>Profil Bilgileri Güncelleme Sayfası</h1>
+<div class="card text-center">
+    <div class="card-title text-secondary">
+        <h4>Profil Resmi</h4>
+    </div>
+    <div class="card-body">
+        <img src="@Model.ImageUrl" style="height:100px;width:100px" alt="profil resmi"/>
+
+    </div>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-6">
+            <label>Profil Resmi Seçin</label>
+            <input type="file" asp-for="ImageFile" class="form-control" />
+            <br />
+            <label>Ad</label>
+            <input type="text" asp-for="FirstName" class="form-control" required />
+            <br />
+            <label>Soyad</label>
+            <input type="text" asp-for="LastName" class="form-control" required />
+            <br />
+            <label>Kullanıcı Adı</label>
+            <input type="text" asp-for="UserName" class="form-control" required />
+            <br />
+         
+        </div>
+        <div class="col-6">
+            <label>Email</label>
+            <input type="text" asp-for="Email" class="form-control" required />
+            <br />
+            <label>Ünvan</label>
+            <input type="text" asp-for="Title" class="form-control"/>
+            <br />
+            <label>Telefon Numarası</label>
+            <input type="text" asp-for="PhoneNumber" class="form-control"/>
+            <br />
+            <input type="hidden" asp-for="ImageUrl" class="form-control"  />
+
+        </div>
+        <div class="col-6">
+            <label>Bilgileri Güncellemek İçin Mevcut Şifrenizi Girin</label>
+            <input type="password" asp-for="CurrentPassword" class="form-control" required />
+        </div>
+        <br />
+        <span class="text-danger">@Html.ValidationSummary()</span>
+        <button class="btn btn-outline-primary">Güncelle</button>
+
+    </div>
+</form>

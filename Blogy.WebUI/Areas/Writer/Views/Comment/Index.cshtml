@@ -1,0 +1,56 @@
+﻿@using Blogy.Business.DTOs.CommentDtos
+@model List<ResultCommentDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+    var count = 0;
+}
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">Bloglarıma Gelen Yorumlar</div>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Yorum Yapan</th>
+                        <th scope="col">Blog Başlığı</th>
+                        <th scope="col">Yorum İçeriği</th>
+                        <th scope="col">Tarih</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model == null || Model.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center">Henüz bloglarınıza yapılmış bir yorum yok.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <td>@count</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span>@item.User?.FullName</span>
+                                    </div>
+                                </td>
+                                <td>@item.Blog?.Tittle</td>
+                                <td>@item.Content</td>
+                                <td>@item.CreatedDate.ToString("dd MMM yyyy")</td>
+                     
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
