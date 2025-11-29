@@ -139,3 +139,7 @@ Proje **Solid** prensiplerine uygun olarak **N-Katmanlı Mimari (N-Layer Archite
 <img width="1897" height="820" alt="Ekran görüntüsü 2025-11-29 224250" src="https://github.com/user-attachments/assets/7d52846a-5f8a-4486-ae3e-b3563ef3df39" />
 <img width="1899" height="827" alt="Ekran görüntüsü 2025-11-29 224300" src="https://github.com/user-attachments/assets/4adf13e4-0ebc-4568-9219-fe38b5442803" />
 
+## Giriş ve Kayıt Sayfaları
+<img width="1919" height="825" alt="Ekran görüntüsü 2025-11-29 223628" src="https://github.com/user-attachments/assets/82e2cc4f-9ceb-4b53-a164-d4b57e46e803" />
+<img width="1913" height="833" alt="Ekran görüntüsü 2025-11-29 223620" src="https://github.com/user-attachments/assets/87ce0a62-72ae-404e-bbd8-1a6d3086e13d" />
+
