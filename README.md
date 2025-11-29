@@ -69,12 +69,12 @@ Proje **Solid** prensiplerine uygun olarak **N-Katmanlı Mimari (N-Layer Archite
 
 ## Blogy Web Sayfası
 ### Anasayfa
-<img width="1890" height="824" alt="Ekran görüntüsü 2025-11-29 223301" src="https://github.com/user-attachments/assets/53d9297a-d1a3-43fc-add0-5a875e4d6c4d" />
-<img width="1893" height="829" alt="Ekran görüntüsü 2025-11-29 223253" src="https://github.com/user-attachments/assets/f3385d2e-285c-4aed-808e-309e4bcd2134" />
-<img width="1896" height="828" alt="Ekran görüntüsü 2025-11-29 223245" src="https://github.com/user-attachments/assets/81d143fa-a616-43dc-b4d9-f730872c4ce5" />
-<img width="1895" height="825" alt="Ekran görüntüsü 2025-11-29 223238" src="https://github.com/user-attachments/assets/09768eb6-aa0b-40ac-9267-e8f64d32c8d5" />
-<img width="1895" height="822" alt="Ekran görüntüsü 2025-11-29 223230" src="https://github.com/user-attachments/assets/190af7df-05c2-4346-8149-b878038da94d" />
 <img width="1907" height="835" alt="Ekran görüntüsü 2025-11-29 223220" src="https://github.com/user-attachments/assets/7b3d4e0f-c68f-45ea-bd6e-6fc8e3a46fac" />
+<img width="1895" height="822" alt="Ekran görüntüsü 2025-11-29 223230" src="https://github.com/user-attachments/assets/190af7df-05c2-4346-8149-b878038da94d" />
+<img width="1895" height="825" alt="Ekran görüntüsü 2025-11-29 223238" src="https://github.com/user-attachments/assets/09768eb6-aa0b-40ac-9267-e8f64d32c8d5" />
+<img width="1896" height="828" alt="Ekran görüntüsü 2025-11-29 223245" src="https://github.com/user-attachments/assets/81d143fa-a616-43dc-b4d9-f730872c4ce5" />
+<img width="1893" height="829" alt="Ekran görüntüsü 2025-11-29 223253" src="https://github.com/user-attachments/assets/f3385d2e-285c-4aed-808e-309e4bcd2134" />
+<img width="1890" height="824" alt="Ekran görüntüsü 2025-11-29 223301" src="https://github.com/user-attachments/assets/53d9297a-d1a3-43fc-add0-5a875e4d6c4d" />
 <img width="1894" height="830" alt="Ekran görüntüsü 2025-11-29 223308" src="https://github.com/user-attachments/assets/c7a57e1f-f39a-4f4f-891b-a0691ab22df6" />
 
 
